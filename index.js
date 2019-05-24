@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const Bitmap = require('./lib/bitMap');
-const transform = require('./lib/transform');
+const transformWithCallbacks = require('./lib/transform');
 
 // TODO: 1. Gather user input (infile and transform)
 // TODO: 2. Read the input bitmap file using the fs module
@@ -11,9 +11,7 @@ const transform = require('./lib/transform');
 // TODO: 5. Write the mutated buffer to the output file path
 
 const [file, operation] = process.argv.slice(2);
-console.log(file, Bitmap);
 
-let bitmap = new Bitmap(file);
-console.log(bitmap);
+console.log(file, operation);
 
-transform.transformWithCallbacks(file);
+transformWithCallbacks(file, operation);
