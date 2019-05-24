@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const bitmap = require('./lib/bitMap');
+const Bitmap = require('./lib/bitMap');
 const transform = require('./lib/transform');
 
 // TODO: 1. Gather user input (infile and transform)
@@ -11,6 +11,9 @@ const transform = require('./lib/transform');
 // TODO: 5. Write the mutated buffer to the output file path
 
 const [file, operation] = process.argv.slice(2);
-console.log(file);
+console.log(file, Bitmap);
+
+let bitmap = new Bitmap(file);
+console.log(bitmap);
 
 transform.transformWithCallbacks(file);
