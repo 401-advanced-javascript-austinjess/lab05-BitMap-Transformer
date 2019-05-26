@@ -8,6 +8,8 @@ const Bitmap = require('../lib/bitMap.js');
 
 const bmpPath = `${__dirname}/../assets/baldy.bmp`;
 
+const baseBitmap = new Bitmap(bmpPath);
+
 describe('The Bitmap Module', () => {
   it('can parse a file', async () => {
     const buffer = await fsReadFile(bmpPath);
@@ -29,5 +31,17 @@ describe('The Bitmap Module', () => {
 
     expect(bitmap.colorBuffer).toBeDefined();
     expect(bitmap.pixelBuffer).toBeDefined();
+  });
+
+  it('can invert the image', async () => {
+    const buffer = await fsReadFile(bmpPath);
+
+    let bitmap = new Bitmap(bmpPath);
+    bitmap.parse(buffer);
+
+    bitmap.transform('invert');
+    const arrBuffer = [...buffer];
+
+    expect(arrBuffer[0]).toBe(66);
   });
 });
