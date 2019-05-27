@@ -33,6 +33,17 @@ describe('The Bitmap Module', () => {
     expect(bitmap.pixelBuffer).toBeDefined();
   });
 
+  it('can parse a 24-bit file', async () => {
+    const bit24Path = `${__dirname}/../assets/24bit.bmp`;
+
+    const buffer = await fsReadFile(bit24Path);
+    expect(buffer).toBeDefined();
+
+    let bitmap = new Bitmap(bit24Path);
+    bitmap.parse(buffer);
+    console.log(bitmap);
+  });
+
   it('can invert the image', async () => {
     const buffer = await fsReadFile(bmpPath);
 
